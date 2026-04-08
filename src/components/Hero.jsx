@@ -72,9 +72,11 @@ const Hero = () => {
               Contact Me <ArrowRight size={18} />
             </button>
           </a>
-          <button className="btn-secondary">
-            View Resume <FileText size={18} />
-          </button>
+          <a href="/suchi_resume.pdf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+            <button className="btn-secondary">
+              View Resume <FileText size={18} />
+            </button>
+          </a>
         </motion.div>
       </div>
 
