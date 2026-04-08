@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #f59e0b; /* Amber 500 */
+  --secondary: #eab308; /* Yellow 500 */
+  --accent: #fbbf24; /* Amber 400 */
+  --background: #09090b; /* Zinc 950 (Very deep sophisticated black) */
+  
+  --text-main: #fafafa;
+  --text-muted: #a1a1aa;
+  
+  --glass-bg: rgba(24, 24, 27, 0.75); /* Zinc 900 translucent */
+  --glass-border: rgba(255, 255, 255, 0.05); 
+  --glass-highlight: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+  background-color: var(--background);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 50% -20%, #18181b 0%, #09090b 80%);
+  z-index: -3;
+  pointer-events: none;
+}
+
+.app-container {
+  min-height: 100vh;
+  position: relative;
+  z-index: 0;
+}
+
+/* Vibrant Animated Gold/Onyx Orbs behind content */
+.app-container::before {
+  content: "";
+  position: fixed;
+  top: -20vh; left: -10vw;
+  width: 60vw; height: 60vh;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, rgba(0,0,0,0) 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+  animation: floatOrb 20s infinite alternate ease-in-out;
+}
+
+.app-container::after {
+  content: "";
+  position: fixed;
+  bottom: -20vh; right: -10vw;
+  width: 70vw; height: 70vh;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.06) 0%, rgba(0,0,0,0) 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+  animation: floatOrb2 25s infinite alternate ease-in-out;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10vw, 15vh) scale(1.1); }
+  100% { transform: translate(-5vw, 25vh) scale(0.9); }
+}
+
+@keyframes floatOrb2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-10vw, -15vh) scale(1.15); }
+  100% { transform: translate(10vw, -10vh) scale(0.95); }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+.section {
+  padding: 100px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  scroll-margin-top: 80px;
+}
+
+.section-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 3.5rem;
+  font-weight: 800;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transform: translateZ(0);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.glass-panel:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.9), 0 0 30px rgba(245, 158, 11, 0.2) !important;
+  border-color: rgba(245, 158, 11, 0.6) !important;
+}
+
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+  z-index: 1;
+}
+
+/* Glassy Lightning / Shimmer Effect on Hover */
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-25deg);
+  transition: 0.7s ease-in-out;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.glass-panel:hover::after {
+  left: 150%;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.btn-primary, .btn-secondary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease, filter 0.4s ease, background 0.3s ease;
+}
+
+/* Diagonal sweeping shine effect */
+.btn-primary::before, .btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-20deg);
+  transition: 0.6s ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-secondary::before {
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.4), transparent);
+}
+
+.btn-primary:hover::before, .btn-secondary:hover::before {
+  left: 150%;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  color: #000000;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 9999px;
+  font-weight: 700;
+  box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+  filter: brightness(1.15);
+}
+
+.btn-primary:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.03);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 14px 32px;
+  border-radius: 9999px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+}
+
+.btn-secondary:hover {
+  background: rgba(245, 158, 11, 0.1);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.6);
+}
+
+.btn-secondary:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.1);
+}
+
+/* Moving Light Animations */
+.light-beam {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent);
+  height: 2px;
+  filter: blur(2px);
+  animation: moveLight linear infinite;
+  opacity: 0;
+  box-shadow: 0 0 20px 4px rgba(245, 158, 11, 0.2);
+}
+
+.beam-1 { top: 25%; left: -20vw; width: 30vw; animation-duration: 12s; animation-delay: 2s; }
+.beam-2 { top: 55%; left: -20vw; width: 40vw; animation-duration: 18s; animation-delay: 7s; }
+.beam-3 { top: 85%; left: -20vw; width: 25vw; animation-duration: 15s; animation-delay: 0s; }
+
+@keyframes moveLight {
+  0% { transform: translateX(0); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(140vw); opacity: 0; }
+}
+
+.particle {
+  position: absolute;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 15px 2px var(--primary);
+  animation: floatUp linear infinite;
+  bottom: -20px;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(0); opacity: 0; }
+  10% { opacity: 1; transform: translateY(-10vh) scale(1); }
+  90% { opacity: 1; transform: translateY(-90vh) scale(1); }
+  100% { transform: translateY(-110vh) scale(0); opacity: 0; }
+}
